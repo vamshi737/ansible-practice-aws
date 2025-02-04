@@ -1,0 +1,16 @@
+---
+- name: Update System Packages
+  hosts: aws_servers
+  become: yes
+  tasks:
+    - name: Update all packages (Amazon Linux/CentOS)
+      dnf:
+        name: "*"
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: Update all packages (Debian/Ubuntu)
+      apt:
+        update_cache: yes
+        upgrade: dist
+      when: ansible_os_family == "Debian"
