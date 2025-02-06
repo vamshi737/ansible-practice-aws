@@ -1,7 +1,7 @@
 ---
  
 - name: setup nginx web server
-  hosts: aws_server
+  hosts: aws_servers
   become: true
 
 
