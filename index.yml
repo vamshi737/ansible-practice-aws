@@ -1,23 +1,18 @@
----
- 
-- name: setup nginx web server
+- name: Setup nginx web server
   hosts: aws_servers
   become: true
-
-
   tasks:
-    - name: install nginx
+    - name: Install Nginx
       ansible.builtin.yum:
-       name: ngnix
-       state: present
-      
-    -  name: start nginx service
-       ansible.builtin.service:
-         name: nginx
-         state: started
-         enabled: yes
+        name: nginx
+        state: present
 
-    - name: Create an index.html file
+    - name: Start Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+
+    - name: Create index.html file
       ansible.builtin.copy:
         dest: /usr/share/nginx/html/index.html
         content: "<h1>Welcome to Ansible Nginx Setup</h1>"
